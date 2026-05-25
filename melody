@@ -1,0 +1,70 @@
+import discord
+from discord.ext import commands
+
+TOKEN = "YOUR_BOT_TOKEN"
+
+intents = discord.Intents.default()
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user}')
+
+@bot.command()
+async def rules(ctx):
+    embed = discord.Embed(
+        title="📜 Discord Community Rules",
+        description=(
+            "Welcome to our **Melody Family** community!\n"
+            "Different families, one community — let’s keep this server fun, respectful, and welcoming for everyone."
+        ),
+        color=0xf5c2e7
+    )
+
+    embed.add_field(
+        name="1. Respect Everyone",
+        value="Friendly banter is okay, personal attacks and toxic behavior are not.",
+        inline=False
+    )
+
+    embed.add_field(
+        name="2. Different Families, Same Community",
+        value="Rivalries stay inside the game. Outside the game, we treat each other like teammates.",
+        inline=False
+    )
+
+    embed.add_field(
+        name="3. No Drama & Unnecessary Fights",
+        value="Solve issues calmly or ask moderators for help.",
+        inline=False
+    )
+
+    embed.add_field(
+        name="4. Keep Chats Clean & Comfortable",
+        value="Avoid spam, offensive content, and anything that ruins the vibe.",
+        inline=False
+    )
+
+    embed.add_field(
+        name="5. Help New and Returning Players",
+        value="A small guide or kind answer can make someone stay in the community.",
+        inline=False
+    )
+
+    embed.add_field(
+        name="6. Use Channels Properly",
+        value="Keep topics in the correct channels to avoid clutter.",
+        inline=False
+    )
+
+    embed.add_field(
+        name="7. Have Fun & Make Memories",
+        value="Events, grinding, raids, or random talks — enjoy the community together.",
+        inline=False
+    )
+
+    embed.set_footer(text="Melody Family Community")
+
+    await ctx.send(embed=embed)
+
+bot.run(TOKEN)
